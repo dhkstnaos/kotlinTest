@@ -3,7 +3,7 @@ package com.example.kotlinTest.entity
 import javax.persistence.*
 
 @Entity
-@Table(name="todo")
+@Table(name="board")
 class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,5 +11,4 @@ class Board {
     var title: String? = null
     var description: String? = null
     var writer: String?= null
-
 }

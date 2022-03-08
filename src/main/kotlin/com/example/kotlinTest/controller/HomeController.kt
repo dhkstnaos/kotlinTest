@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HomeController {
     @GetMapping
-    fun Index() : String = "Hello Spring World!"
+    fun home() : String = "Hello!"
 }
