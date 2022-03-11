@@ -4,11 +4,13 @@ import javax.persistence.*
 
 @Entity
 @Table(name="board")
-class Board {
+class Board(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
-    var title: String? = null
-    var description: String? = null
+    var id: Long? = null,
+    var title: String? = null,
+    var description: String? = null,
     var writer: String?= null
+) {
+
 }
