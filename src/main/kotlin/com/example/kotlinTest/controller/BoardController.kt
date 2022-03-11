@@ -2,6 +2,7 @@ package com.example.kotlinTest.controller
 
 import com.example.kotlinTest.entity.Board
 import com.example.kotlinTest.repository.BoardRepository
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
@@ -12,22 +13,27 @@ class BoardController(val boardRepository: BoardRepository) {
     fun getBoardList() = boardRepository.findAll()
 
     @GetMapping("/{boardId}")
-    fun getBoard(@PathVariable("boardId") boardId: Long): Optional<Board>? {
-        return boardRepository.findById(boardId)
+    @Cacheable(value = arrayOf("board"))
+    fun getBoard(@PathVariable("boardId") boardId: Long): Board {
+        return boardRepository.findById(boardId).get()
     }
 
     @PostMapping
-    fun postBoard(@RequestBody board: Board) : Board {
+    fun postBoard(
+        @RequestBody board: Board
+    ): Board {
         return boardRepository.save(board)
     }
 
     @PutMapping("/{boardId}")
-    fun updateBoard(@RequestBody board: Board,
-                    @PathVariable("boardId") boardId: Long): Board {
+    fun updateBoard(
+        @RequestBody board: Board,
+        @PathVariable("boardId") boardId: Long
+    ): Board {
         var preBoard: Board = boardRepository.findById(boardId).get()
-        preBoard.title=board.title
-        preBoard.description=board.description
-        preBoard.writer=board.writer
+        preBoard.title = board.title
+        preBoard.description = board.description
+        preBoard.writer = board.writer
         return boardRepository.save(preBoard)
     }
 

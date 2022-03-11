@@ -42,12 +42,19 @@ dependencies {
 	//직렬화 플러그인
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
 
+	//kotlin datetime 플러그인
+	implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+
 	// QueryDSL
 	implementation("com.querydsl:querydsl-jpa:$qeurydslVersion")
 	kapt("com.querydsl:querydsl-apt:$qeurydslVersion:jpa")
 	kapt("org.springframework.boot:spring-boot-configuration-processor")
 
+	//redis 추가
+	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+	//data jpa
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
